@@ -1,0 +1,15 @@
+.responsive__table {
+    overflow-x: auto;
+}
+
+.card__table{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card__table__row {
+    background-color: white;
+    /* padding-left: 40px; */
+}

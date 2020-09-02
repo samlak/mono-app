@@ -1,0 +1,54 @@
+.card {
+    overflow: hidden;
+    border: 1px solid rgb(49, 127, 243);
+    border-radius: 10px;
+    margin: 30px 0;
+}
+
+.card__content {
+    display: none;
+    margin: 10px 30px;
+}
+
+.card__content__show {
+    display: block;
+}
+
+.card__content__text {
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.card__content__text__center {
+    text-align: center;
+}
+
+.card__header {
+    overflow: hidden;
+    background-color:  rgb(49, 127, 243);
+    color: white;
+    padding: 5px 20px;
+}
+
+.card__heading {
+    float: left;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.card__button {
+    float: right;
+    background-color: white;
+    color: rgba(5, 93, 225, 1);
+    border: none;
+    border-radius: 20px;
+    padding: 4px 10px;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.responsive__table {
+    overflow-x: auto;
+    margin-bottom: 10px;
+}
