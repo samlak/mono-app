@@ -4,8 +4,6 @@ import {amountToNaira, stringToDate} from '../../../utils/helper';
 import classes from './TableData.module.css';
 
 const TableData = (props) => {
-  const serialNumber = <td className={classes.card__table__data}>{props.serialNumber}</td>;
-
   let tableDataContent = Object.keys(props.content)
     .filter(objectKey => objectKey !== '_id')
     .map((params, index) => {
@@ -24,7 +22,6 @@ const TableData = (props) => {
 
   return (
     <tr>
-      {serialNumber}
       {tableDataContent}
     </tr>
   );

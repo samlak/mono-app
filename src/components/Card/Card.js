@@ -41,7 +41,7 @@ const Card = (props) => {
     }
 
     const dataLength = props.initialContentLength;
-    const paginationInterval = 5;
+    const paginationInterval = 30;
     const paginationSize = dataLength/paginationInterval;
 
     let paginationComponent = [];

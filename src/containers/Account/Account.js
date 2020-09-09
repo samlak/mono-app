@@ -10,126 +10,12 @@ class Account extends Component {
     accountCode: "code_irgTyLXjD0fWXftD6kUC",
     accountId: "5f1b07430af2a4284935cf54",
     accountData: null,
-    debitData: {
-      tableHead: ["S/N", "Amount", "Date"],
-      tableData: {
-        total: 2000000, 
-        history:[{ 
-          amount: 1000000,
-          period: "06-20" 
-        },{ 
-          amount: 2000000,
-          period: "06-20" 
-        },{ 
-          amount: 3000000,
-          period: "06-20" 
-        },{ 
-          amount: 4000000,
-          period: "06-20" 
-        },{ 
-          amount: 5000000,
-          period: "06-20" 
-        },{ 
-          amount: 6000000,
-          period: "06-20" 
-        },{ 
-          amount: 7000000,
-          period: "06-20" 
-        },{ 
-          amount: 8000000,
-          period: "06-20" 
-        }]
-      }
-    },
-    debitDataToShow: {
-      tableHead: ["S/N", "Amount", "Date"],
-      tableData: {
-        total: 2000000, 
-        history:[{ 
-          amount: 1000000,
-          period: "06-20" 
-        },{ 
-          amount: 2000000,
-          period: "06-20" 
-        },{ 
-          amount: 3000000,
-          period: "06-20" 
-        },{ 
-          amount: 4000000,
-          period: "06-20" 
-        },{ 
-          amount: 5000000,
-          period: "06-20" 
-        }]
-      }
-    },
+    debitData: null,
+    debitDataToShow: null,
     creditData: null,
     creditDataToShow: null,
-    statementData: {
-      tableHead: ["S/N", "Amount", "Date", "Narration", "Type", "Category"],
-      tableData: [{ 
-        _id: "5f171a540295e231abca1154", 
-        amount: 10000, 
-        date: "2020-07-21T00:00:00.000Z", 
-        narration: "TRANSFER from HASSAN ABDULHAMID TOMIWA to OGUNGBEFUN OLADUNNI KHADIJAH", 
-        type: "debit",
-        category: "E-CHANNELS", 
-      },{ 
-        _id: "5f171a540295e231abca1154", 
-        amount: 20000, 
-        date: "2020-07-21T00:00:00.000Z", 
-        narration: "TRANSFER from HASSAN ABDULHAMID TOMIWA to OGUNGBEFUN OLADUNNI KHADIJAH", 
-        type: "debit",
-        category: "E-CHANNELS", 
-      },{ 
-        _id: "5f171a540295e231abca1154", 
-        amount: 30000, 
-        date: "2020-07-21T00:00:00.000Z", 
-        narration: "TRANSFER from HASSAN ABDULHAMID TOMIWA to OGUNGBEFUN OLADUNNI KHADIJAH", 
-        type: "debit",
-        category: "E-CHANNELS", 
-      },{ 
-        _id: "5f171a540295e231abca1154", 
-        amount: 40000, 
-        date: "2020-07-21T00:00:00.000Z", 
-        narration: "TRANSFER from HASSAN ABDULHAMID TOMIWA to OGUNGBEFUN OLADUNNI KHADIJAH", 
-        type: "debit",
-        category: "E-CHANNELS", 
-      },{ 
-        _id: "5f171a540295e231abca1154", 
-        amount: 50000, 
-        date: "2020-07-21T00:00:00.000Z", 
-        narration: "TRANSFER from HASSAN ABDULHAMID TOMIWA to OGUNGBEFUN OLADUNNI KHADIJAH", 
-        type: "debit",
-        category: "E-CHANNELS", 
-      },{ 
-        _id: "5f171a540295e231abca1154", 
-        amount: 60000, 
-        date: "2020-07-21T00:00:00.000Z", 
-        narration: "TRANSFER from HASSAN ABDULHAMID TOMIWA to OGUNGBEFUN OLADUNNI KHADIJAH", 
-        type: "debit",
-        category: "E-CHANNELS", 
-      }]
-    },
-    statementDataToShow: {
-      tableHead: ["S/N", "Amount", "Date", "Narration", "Type", "Category"],
-      tableData: [{ 
-        _id: "5f171a540295e231abca1154", 
-        amount: 10000, 
-        date: "2020-07-21T00:00:00.000Z", 
-        narration: "TRANSFER from HASSAN ABDULHAMID TOMIWA to OGUNGBEFUN OLADUNNI KHADIJAH", 
-        type: "debit",
-        category: "E-CHANNELS", 
-      },{ 
-        _id: "5f171a540295e231abca1154", 
-        amount: 20000, 
-        date: "2020-07-21T00:00:00.000Z", 
-        narration: "TRANSFER from HASSAN ABDULHAMID TOMIWA to OGUNGBEFUN OLADUNNI KHADIJAH", 
-        type: "debit",
-        category: "E-CHANNELS", 
-      }]
-    },
-    // statementData: null,
+    statementData: null,
+    statementDataToShow: null,
     showDebit: false,
     showCredit: false,
     showStatement: false,
@@ -147,7 +33,8 @@ class Account extends Component {
     if (type === "debit") {
       const debitData = this.state.debitData.tableData.history;
       const newData = [];
-      for (let i = start; i < end; i++) {
+      const newEnd = end > debitData.length ? debitData.length : end;
+      for (let i = start; i < newEnd; i++) {
         newData.push(debitData[i]);
       }
 
@@ -165,7 +52,8 @@ class Account extends Component {
     } else if (type === "credit") {
       const creditData = this.state.creditData.tableData.history;
       const newData = [];
-      for (let i = start; i < end; i++) {
+      const newEnd = end > creditData.length ? creditData.length : end;
+      for (let i = start; i < newEnd; i++) {
         newData.push(creditData[i]);
       }
 
@@ -183,7 +71,8 @@ class Account extends Component {
     } else if (type === "statement") {
       const statementData = this.state.statementData.tableData;
       const newData = [];
-      for (let i = start; i < end; i++) {
+      const newEnd = end > statementData.length ? statementData.length : end;
+      for (let i = start; i < newEnd; i++) {
         newData.push(statementData[i]);
       }
 
@@ -200,13 +89,38 @@ class Account extends Component {
   accountInfo () {
     axios.get(`/accounts/${this.state.accountId}`)
     .then(response => {
-      this.setState({accountData: response.data});
+      this.setState({accountData: response.data.account});
     })
     .catch(error => console.log(error));
   }
 
   debitInfo () {
     axios.get(`/accounts/${this.state.accountId}/debits`)
+    .then(response => {
+      const history = [];
+      response.data.history.map((data, index) => {
+        return history.push({
+          "sn": index + 1,
+          ...data
+        });
+      })
+      const tableData = {
+        ...response.data,
+        history
+      }
+
+      const debitData = {
+        tableHead: ["S/N", "Date", "Amount"],
+        tableData
+      }
+      this.setState({debitData});
+      this.dataToShow('debit', 0, 30);
+    })
+    .catch(error => console.log(error));
+  }
+
+  creditInfo () {
+    axios.get(`/accounts/${this.state.accountId}/credits`)
     .then(response => {
       const history = [];
       response.data.history.map((data, index) => {
@@ -219,27 +133,14 @@ class Account extends Component {
         ...response.data,
         history
       }
-
-      const debitData = {
-        tableHead: ["S/N", "Date", "Amount"],
-        tableData: {...response.data}
-        // tableData: tableData
-      }
-      this.setState({debitData});
-      this.dataToShow('debit', 0, 20);
-    })
-    .catch(error => console.log(error));
-  }
-
-  creditInfo () {
-    axios.get(`/accounts/${this.state.accountId}/credits`)
-    .then(response => {
+      
       const creditData = {
         tableHead: ["S/N", "Date", "Amount"],
-        tableData: {...response.data}
+        tableData
       }
       this.setState({creditData});
-      this.dataToShow('credit', 0, 20);
+      this.dataToShow('credit', 0, 30);
+
     })
     .catch(error => console.log(error));
   }
@@ -247,23 +148,21 @@ class Account extends Component {
   statementInfo () {
     axios.get(`/accounts/${this.state.accountId}/statement?period=last6months`)
     .then(response => {
-
       const tableData = [];
-      response.data.map((data, index) => {
+      response.data.data.map((data, index) => {
         return tableData.push({
-                "sn": index + 1,
-                ...data
-              });
+          "sn": index + 1,
+          ...data
+        });
       })
 
       const statementData = {
         tableHead: ["S/N", "Amount", "Date", "Narration", "Type", "Category"],
-        tableData: [response.data]
-        // tableData: tableData
+        tableData: tableData
       }
-      console.log(statementData);
-      // this.setState({statementData});
-      // this.dataToShow('statement', 0, 20);
+
+      this.setState({statementData});
+      this.dataToShow('statement', 0, 30);
     })
     .catch(error => console.log(error));
   }
